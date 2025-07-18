@@ -1,0 +1,7 @@
+prefix=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv
+includedir=${prefix}/include
+ 
+Name: XExtProto
+Description: XExt extension headers
+Version: 7.3.0
+Cflags: -I${includedir}

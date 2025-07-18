@@ -1,0 +1,13 @@
+prefix=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv
+exec_prefix=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv
+libdir=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv/lib
+sharedlibdir=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv/lib
+includedir=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

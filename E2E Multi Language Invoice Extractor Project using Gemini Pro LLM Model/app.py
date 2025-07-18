@@ -1,0 +1,55 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv() # Load environment variables from .env file
+
+import streamlit as st
+from PIL import Image
+import google.generativeai as genai
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+# Function to load gemini pro vision model
+model= genai.GenerativeModel("gemini-1.5-flash")
+
+def get_gemini_response(input,image,prompt):
+    response = model.generate_content(
+        [input,
+        image[0],
+        prompt]
+    )
+    return response.text
+
+def input_image_setup(upload_image):
+    if upload_image is not None:
+      bytes_data =upload_image.getvalue()
+      image_parts = [
+          {
+                "mime_type": upload_image.type,
+                "data": bytes_data
+          }
+      ]  
+      return image_parts
+    else:
+        raise FileNotFoundError("No image uploaded. Please upload an invoice image.")
+    
+
+st.set_page_config(page_title="Invoice Extractor", page_icon=":money_with_wings:", layout="wide")
+st.header("Invoice Extractor using Gemini Pro LLM Model")
+input = st.text_area("Enter your query here:", placeholder="What is the total amount?", height=100)
+upload_image = st.file_uploader("Upload an invoice image", type=["jpg", "jpeg", "png"])
+image = ""
+if upload_image is not None:
+    image = Image.open(upload_image)
+    st.image(image, caption="Uploaded Invoice Image", use_column_width=True)
+
+submit_button = st.button("Submit")
+input_prompt = "Extract the information from the invoice image and answer the question based on the provided input."
+
+if submit_button:
+    ima_data = input_image_setup(upload_image)
+    try:
+        response = get_gemini_response(input_prompt, ima_data, input)
+        st.success(f"Response: {response}")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")

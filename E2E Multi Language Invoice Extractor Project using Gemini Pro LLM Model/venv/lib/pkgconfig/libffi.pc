@@ -1,0 +1,11 @@
+prefix=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+toolexeclibdir=${libdir}
+includedir=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.3
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}

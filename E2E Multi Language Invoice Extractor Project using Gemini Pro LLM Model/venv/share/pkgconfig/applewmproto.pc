@@ -1,0 +1,7 @@
+prefix=/home/bakina/projects/genAI/E2E Multi Language Invoice Extractor Project using Gemini Pro LLM Model/venv
+includedir=${prefix}/include
+ 
+Name: AppleWMProto
+Description: AppleWM extension headers
+Version: 1.4.2
+Cflags: -I${includedir}
